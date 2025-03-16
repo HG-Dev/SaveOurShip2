@@ -102,6 +102,8 @@
     <Compile Include="ApparelHolographic.cs" />
     <Compile Include="ArrivalAction\AerialVehicleArrivalAction_LoadMapAndDefog.cs" />
     <Compile Include="ArrivalAction\AerialVehicleArrivalAction_ShipAssault.cs" />
+    <Compile Include="CompProps\CompProps_RaySpawner.cs" />
+    <Compile Include="Comp\CompRaySpawner.cs" />
     <Compile Include="Comp\CompShipBay.cs" />
     <Compile Include="Def\ArchoGiftDef.cs" />
     <Compile Include="ArrivalAction\CaravanArrivalAction_VisitImpactSite.cs" />
@@ -113,6 +115,7 @@
     <Compile Include="Comp\CompCryptoCocoon.cs" />
     <Compile Include="Comp\CompShuttleAutoDoc.cs" />
     <Compile Include="Designator_RestoreHull.cs" />
+    <Compile Include="Extensions\MapExtensions.cs" />
     <Compile Include="HediffCompProperties_GearRepair.cs" />
     <Compile Include="HediffComp_GearRepair.cs" />
     <Compile Include="Obs-Shuttle\TransportPodsArrivalAction_MoonBase.cs" />
@@ -136,8 +139,10 @@
     <Compile Include="CompProps\CompProps_Archolife.cs" />
     <Compile Include="CompProps\CompProps_ArcholifeCosmetics.cs" />
     <Compile Include="CloakThresholdGizmo.cs" />
-	<Compile Include="SoSDebugActions.cs" />
+    <Compile Include="PlaceWorker\PlaceWorker_LinkedRaySpawner.cs" />
+    <Compile Include="SoSDebugActions.cs" />
     <Compile Include="SoSSpawnOverride.cs" />
+    <Compile Include="Structures\RaySpawnZone.cs" />
     <Compile Include="Vehicles\CompHoverMode.cs" />
     <Compile Include="Vehicles\CompProperties_HoverMode.cs" />
     <Compile Include="Vehicles\CompVehicleHeatNet.cs" />
@@ -482,4 +487,5 @@
     <Publicize Include="Assembly-CSharp" IncludeVirtualMembers="false" />
     <Publicize Include="Vehicles" IncludeVirtualMembers="true" />
   </ItemGroup>
+  <ItemGroup />
 </Project>

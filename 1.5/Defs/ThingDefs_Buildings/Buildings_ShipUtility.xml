@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+	<ThingDef ParentName="BuildingShipHullBase">
+		<defName>ShipAirlockBeam_HG</defName>
+		<label>docking arm</label>
+		<designatorDropdown>Ship_Airlocks</designatorDropdown>
+		<description>I'M WORKIN' HERE!</description>
+		<thingClass>Building</thingClass>
+		<drawerType>MapMeshAndRealTime</drawerType>
+		<graphicData>
+			<texPath>Things/Building/Linked/ShipBeam/ShipBeam_Mechanoid_Atlas</texPath>
+			<graphicClass>Graphic_Single</graphicClass>
+			<linkType>Basic</linkType>
+			<linkFlags>
+				<li>Wall</li>
+				<li>Rock</li>
+			</linkFlags>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+				<edgeTop>Damage/Edge</edgeTop>
+				<edgeBot>Damage/Edge</edgeBot>
+				<edgeLeft>Damage/Edge</edgeLeft>
+				<edgeRight>Damage/Edge</edgeRight>
+			</damageData>
+		</graphicData>
+		<uiIconPath>Things/Building/Ship/BeamSolarUI_Mechanoid</uiIconPath>
+		<rotatable>true</rotatable>
+		<tickerType>Normal</tickerType>
+		<statBases>
+			<WorkToBuild>1</WorkToBuild>
+			<MaxHitPoints>500</MaxHitPoints>
+			<Flammability>0</Flammability>
+		</statBases>
+		<selectable>true</selectable>
+		<costList>
+			<Steel>1</Steel>
+			<!--Plasteel>0</Plasteel>
+			<ComponentSpacer>0</ComponentSpacer-->
+		</costList>
+		<building>
+			<shipPart>true</shipPart>
+			<blueprintGraphicData>
+				<texPath>Things/Building/Linked/Wall_Blueprint_Atlas</texPath>
+			</blueprintGraphicData>
+			<paintable>true</paintable>
+		</building>
+		<comps>
+			<li Class="SaveOurShip2.CompProps_ShipCachePart">
+				<isHull>true</isHull>
+				<hermetic>true</hermetic>
+				<roof>true</roof>
+			</li>
+			<li Class="SaveOurShip2.CompProps_RaySpawner">
+				<range>4</range>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTransmitter</compClass>
+				<transmitsPower>true</transmitsPower>
+			</li>
+			<li Class="SaveOurShip2.CompProps_ShipHeat">
+				<compClass>SaveOurShip2.CompShipHeat</compClass>
+			</li>
+			<li Class="SaveOurShip2.CompProps_Overlay">
+				<graphicPath>Things/Building/Ship/DockAttach</graphicPath>
+				<size>(1,1,1)</size>
+			</li>
+			<li>
+				<compClass>CompColorable</compClass>
+			</li>
+		</comps>
+		<placeWorkers>
+			<li>SaveOurShip2.PlaceWorker_LinkedRaySpawner</li>
+		</placeWorkers>
+        <designationCategory>Ship</designationCategory>
+		<designationHotKey>Misc5</designationHotKey>
+		<researchPrerequisites>
+			<li>ShipBasics</li>
+		</researchPrerequisites>
+		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+	</ThingDef>
+</Defs>
