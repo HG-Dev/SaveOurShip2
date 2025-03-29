@@ -6,7 +6,7 @@ using Verse;
 
 namespace SaveOurShip2
 {
-    public readonly struct RaySpawnZone : IEnumerable<IntVec3>
+    public readonly struct RaySpawnZone : IEnumerable<IntVec3>, IReadOnlyList<IntVec3>
     {
         /// <summary>
         /// The origin cell of the spawn zone. Not inside the spawn zone.
@@ -90,10 +90,23 @@ namespace SaveOurShip2
 
         public CellRect ToCellRect => CellRect.FromCellList(new IntVec3[] { Origin + Forward, End });
 
+        public int Count => Range;
+
+        public IntVec3 this[int index]
+        {
+            get
+            {
+                index = Math.Max(index, -1);
+                return Origin + Forward * Math.Min(index + 1, Range);
+            }
+        }
+
         public override string ToString()
         {
             return $"RaySpawnZone from M[{MapIndex}]:{Origin} with unblocked terminus of {End}";
         }
+
+        public List<IntVec3> ToList() => new List<IntVec3>(this);
 
         /*public int Count => Range;
 

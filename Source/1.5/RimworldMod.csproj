@@ -102,6 +102,7 @@
     <Compile Include="ApparelHolographic.cs" />
     <Compile Include="ArrivalAction\AerialVehicleArrivalAction_LoadMapAndDefog.cs" />
     <Compile Include="ArrivalAction\AerialVehicleArrivalAction_ShipAssault.cs" />
+    <Compile Include="Building\Building_ShipHullExtendable.cs" />
     <Compile Include="CompProps\CompProps_RaySpawner.cs" />
     <Compile Include="Comp\CompRaySpawner.cs" />
     <Compile Include="Comp\CompShipBay.cs" />

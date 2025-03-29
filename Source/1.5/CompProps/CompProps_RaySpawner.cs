@@ -19,7 +19,10 @@ namespace SaveOurShip2
         public const int MaximumRange = 100;
 
         public ThingDef thingDefToSpawn;
+        public ThingDef stuffDefForThing;
         public int range = 3;
+        public int ticksPerSpawn = 60;
+        public int ticksPerDeSpawn = 60;
         public SoundDef loopExtendingSound;
         public SoundDef singleExtendStep;
         public SoundDef singleExtendComplete;
@@ -38,15 +41,33 @@ namespace SaveOurShip2
         {
             if (compClass == null)
                 yield return parentDef.defName + " has CompProperties with null compClass.";
-            if (range < MinimumRange || range > MaximumRange)
-                yield return parentDef.defName + " has linear spawner settings with incorrect range: " + range.ToString();
+
+            var clampedRange = UnityEngine.Mathf.Clamp(range, MinimumRange, MaximumRange);
+            if (!range.Equals(clampedRange))
+            {
+                yield return parentDef.defName + " has spawn settings with incorrect range: " + range.ToString();
+                range = clampedRange;
+            }
+            var clampedTicksPerCell = UnityEngine.Mathf.Clamp(ticksPerSpawn, 0, GenTicks.TickLongInterval);
+            if (!clampedTicksPerCell.Equals(ticksPerSpawn))
+            {
+                yield return parentDef.defName + " has spawn settings with improper TPS value: " + ticksPerSpawn.ToString();
+                ticksPerSpawn = clampedTicksPerCell;
+            }
+            if (thingDefToSpawn.MadeFromStuff && stuffDefForThing == null)
+            {
+                yield return $"{parentDef.defName} has stuffable thingDefToSpawn ({thingDefToSpawn.defName}), but no stuffDefForThing assignment.";
+            }
         }
 
         public override void ResolveReferences(ThingDef parentDef)
         {
             base.ResolveReferences(parentDef);
             if (thingDefToSpawn == null)
+            {
                 thingDefToSpawn = RimWorld.ThingDefOf.Wall;
+                stuffDefForThing = RimWorld.ThingDefOf.Steel;
+            }
             if (loopExtendingSound == null)
                 loopExtendingSound = RimWorld.SoundDefOf.MechChargerCharging;
             if (singleExtendStep == null)

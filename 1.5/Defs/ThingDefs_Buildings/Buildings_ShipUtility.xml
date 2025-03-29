@@ -1,19 +1,70 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
 	<ThingDef ParentName="BuildingShipHullBase">
-		<defName>ShipAirlockBeam_HG</defName>
+		<defName>ShipExtendingBeam_HG</defName>
+		<label>airlock wall</label>
+		<thingClass>Building</thingClass>
+		<graphicData>
+			<texPath>Things/Building/HG/ShipBeamExtending_cap</texPath>
+			<graphicClass>Graphic_Multi</graphicClass>
+			<damageData>
+				<cornerTL>Damage/Corner</cornerTL>
+				<cornerTR>Damage/Corner</cornerTR>
+				<cornerBL>Damage/Corner</cornerBL>
+				<cornerBR>Damage/Corner</cornerBR>
+				<edgeTop>Damage/Edge</edgeTop>
+				<edgeBot>Damage/Edge</edgeBot>
+				<edgeLeft>Damage/Edge</edgeLeft>
+				<edgeRight>Damage/Edge</edgeRight>
+			</damageData>
+		</graphicData>
+		<statBases>
+			<WorkToBuild>200</WorkToBuild>
+			<MaxHitPoints>250</MaxHitPoints>
+			<Flammability>0</Flammability>
+		</statBases>
+		<placeWorkers></placeWorkers>
+		<description>An extending hull. Includes conduits for power, life-support gases, and coolant. Not meant to be built manually.</description>
+		<placingDraggableDimensions>1</placingDraggableDimensions>
+		<comps>
+			<li Class="SaveOurShip2.CompProps_ShipCachePart">
+				<isHull>true</isHull>
+				<hermetic>true</hermetic>
+				<roof>true</roof>
+			</li>
+			<li Class="CompProperties_Power">
+				<compClass>CompPowerTransmitter</compClass>
+				<transmitsPower>true</transmitsPower>
+			</li>
+			<li Class="SaveOurShip2.CompProps_ShipHeat">
+				<compClass>SaveOurShip2.CompShipHeat</compClass>
+			</li>
+		</comps>
+		<rotatable>true</rotatable>
+		<building>
+			<shipPart>true</shipPart>
+		</building>
+		<costList>
+			<Plasteel>5</Plasteel>
+		</costList>
+	</ThingDef>
+
+	<ThingDef ParentName="BuildingShipHullBase">
+		<defName>ShipExtendableAirlock_HG</defName>
 		<label>docking arm</label>
 		<designatorDropdown>Ship_Airlocks</designatorDropdown>
 		<description>I'M WORKIN' HERE!</description>
-		<thingClass>Building</thingClass>
+		<thingClass>SaveOurShip2.Building_ShipHullExtendable</thingClass>
 		<drawerType>MapMeshAndRealTime</drawerType>
 		<graphicData>
 			<texPath>Things/Building/Linked/ShipBeam/ShipBeam_Mechanoid_Atlas</texPath>
 			<graphicClass>Graphic_Single</graphicClass>
 			<linkType>Basic</linkType>
 			<linkFlags>
-				<li>Wall</li>
 				<li>Rock</li>
+				<li>Wall</li>
+				<li>Custom1</li>
 			</linkFlags>
 			<damageData>
 				<cornerTL>Damage/Corner</cornerTL>
@@ -54,10 +105,14 @@
 				<roof>true</roof>
 			</li>
 			<li Class="SaveOurShip2.CompProps_RaySpawner">
-				<range>4</range>
+				<range>5</range>
+				<thingDefToSpawn>ShipExtendingBeam_HG</thingDefToSpawn>
+				<ticksPerSpawn>240</ticksPerSpawn>
+				<ticksPerDeSpawn>320</ticksPerDeSpawn>
 			</li>
 			<li Class="CompProperties_Power">
-				<compClass>CompPowerTransmitter</compClass>
+				<compClass>CompPowerTrader</compClass>
+				<basePowerConsumption>50</basePowerConsumption>
 				<transmitsPower>true</transmitsPower>
 			</li>
 			<li Class="SaveOurShip2.CompProps_ShipHeat">
@@ -79,6 +134,6 @@
 		<researchPrerequisites>
 			<li>ShipBasics</li>
 		</researchPrerequisites>
-		<constructionSkillPrerequisite>6</constructionSkillPrerequisite>
+		<constructionSkillPrerequisite>8</constructionSkillPrerequisite>
 	</ThingDef>
 </Defs>
